@@ -4,13 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="批量操作VPN权限.md, Rick&#39;s Blog">
-    <meta name="description" content="前言此VPN是通过微软Server的【路由和访问】角色进行部署，权限的操作是针对AD用户的“拨入”属性。
-
-开通权限：将“拨入”属性值改为“允许”。
-取消权限：将“拨入”属性值改为默认值【通过NPS网络策略控制访问】。
-
-批量开通权限提前将">
+    <meta name="keywords" content="通过Docker部署Zabbix, Rick&#39;s Blog">
+    <meta name="description" content="准备工作1234567891011121314151617181920212223242526272829303132# 基础YUM源和优化系统（此脚本只能优化CentOS7的系统）curl -L https://drive.yangwn.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>批量操作VPN权限.md | Rick&#39;s Blog</title>
+    <title>通过Docker部署Zabbix | Rick&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -314,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">批量操作VPN权限.md</h1>
+                    <h1 class="description center-align post-title">通过Docker部署Zabbix</h1>
                 </div>
             </div>
         </div>
@@ -435,18 +430,27 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/VPN/">
-                                <span class="chip bg-color">VPN</span>
+                            <a href="/tags/Zabbix/">
+                                <span class="chip bg-color">Zabbix</span>
                             </a>
                         
-                            <a href="/tags/%E8%B7%AF%E7%94%B1%E5%92%8C%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/">
-                                <span class="chip bg-color">路由和远程访问</span>
+                            <a href="/tags/Docker/">
+                                <span class="chip bg-color">Docker</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -455,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-08
+                    2022-06-15
                 </div>
                 
 
@@ -476,29 +480,31 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此VPN是通过微软Server的【路由和访问】角色进行部署，权限的操作是针对AD用户的“拨入”属性。</p>
+                <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 基础YUM源和优化系统（此脚本只能优化CentOS7的系统）</span></span><br><span class="line">curl -L https://drive.yangwn.top/d/AliDrive/Shell/system.sh | sh</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载docker-ce.repo</span></span><br><span class="line">wget -O /etc/yum.repos.d/docker-ce.repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装docker</span></span><br><span class="line">yum clean all &amp;&amp; yum makecache</span><br><span class="line">yum -y install docker-ce</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改docker配置文件（可选）</span></span><br><span class="line">mkdir /etc/docker</span><br><span class="line"></span><br><span class="line">cat &lt;&lt; EOF | tee /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;graph&quot;: &quot;/data/docker&quot;,</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;http://hub-mirror.c.163.com&quot;, &quot;https://docker.mirrors.ustc.edu.cn&quot;],</span><br><span class="line">  &quot;live-restore&quot;: true</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动docker服务</span></span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl enable --now docker</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装docker-compose</span></span><br><span class="line">curl -L https://get.daocloud.io/docker/compose/releases/download/v2.2.2/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 赋权</span></span><br><span class="line">chmod +x /usr/local/bin/docker-compose</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看版本</span></span><br><span class="line">docker-compose -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署Zabbix"><a href="#部署Zabbix" class="headerlink" title="部署Zabbix"></a>部署Zabbix</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://drive.yangwn.top/AliDrive/Linux/Docker/Zabbix">https://drive.yangwn.top/AliDrive/Linux/Docker/Zabbix</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载并且导入容器</span></span><br><span class="line">wget https://drive.yangwn.top/d/AliDrive/Linux/Docker/Zabbix/zabbix-image-6.0.tar.gz</span><br><span class="line">tar xf zabbix-image-6.0.tar.gz</span><br><span class="line">cd zabbix-image-6.0</span><br><span class="line">./docker_load.sh</span><br><span class="line">docker image ls -a</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载并且解压部署文件</span></span><br><span class="line">wget https://drive.yangwn.top/d/AliDrive/Linux/Docker/Zabbix/zabbix-docker.tar.gz</span><br><span class="line">tar xf zabbix-docker.tar.gz</span><br><span class="line">cd zabbix-docker </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换部署版本</span></span><br><span class="line">git checkout 6.0 </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行Zabbix容器</span></span><br><span class="line">docker-compose --profile=all -f docker-compose_v3_alpine_mysql_latest.yaml up -d</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭Zabbix容器</span></span><br><span class="line">docker-compose --profile=all -f docker-compose_v3_alpine_mysql_latest.yaml down</span><br></pre></td></tr></table></figure>
+
+<h3 id="开机运行"><a href="#开机运行" class="headerlink" title="开机运行"></a>开机运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编辑开机启动文件</span></span><br><span class="line">vim /etc/rc.local</span><br><span class="line">docker-compose --profile=all -f /root/zabbix-docker/docker-compose_v3_alpine_mysql_latest.yaml up -d</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 开机启动文件赋予执行权限</span></span><br><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化操作"><a href="#优化操作" class="headerlink" title="优化操作"></a>优化操作</h2><h3 id="解决中文乱码"><a href="#解决中文乱码" class="headerlink" title="解决中文乱码"></a>解决中文乱码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 拷贝Windows字体（微软雅黑、仿宋常规字体均可以解决）</span></span><br><span class="line">C:\Windows\Fonts</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 容器名称</span></span><br><span class="line">zabbix-docker-zabbix-web-nginx-mysql-1</span><br><span class="line">zabbix-docker-zabbix-web-apache-mysql-1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将字体拷贝到容器内部</span></span><br><span class="line">wget https://drive.yangwn.top/d/Onedrive/Linux/Docker/Zabbix/msyh.ttc</span><br><span class="line">docker cp msyh.ttc zabbix-docker-zabbix-web-nginx-mysql-1:/usr/share/zabbix/assets/fonts/DejaVuSans.ttf</span><br></pre></td></tr></table></figure>
+
+<h3 id="拓扑图链路延迟Label示例"><a href="#拓扑图链路延迟Label示例" class="headerlink" title="拓扑图链路延迟Label示例"></a>拓扑图链路延迟Label示例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 4.0版本</span></span><br><span class="line">IN:&#123;主机名称:键值.last(0)&#125;</span><br><span class="line">OUT:&#123;主机名称:键值.last(0)&#125;</span><br><span class="line">IN:&#123;A1 Switch:net.if.in[ifHCInOctets.369098752].last(0)&#125;</span><br><span class="line">OUT:&#123;A1 Switch:net.if.out[ifHCOutOctets.369098752].last(0)&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 6.0版本</span></span><br><span class="line">IN:&#123;?last(/主机名称/键值)&#125;</span><br><span class="line">OUT:&#123;主机名称:键值.last(0)&#125;</span><br><span class="line">IN:&#123;?last(/A1 Switch/net.if.in[ifHCInOctets.369098752])&#125;</span><br><span class="line">OUT:&#123;?last(/A1 Switch/net.if.out[ifHCOutOctets.369098752])&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考博文：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1956234">https://cloud.tencent.com/developer/article/1956234</a></p>
+<h3 id="清理Zabbix数据库binlog"><a href="#清理Zabbix数据库binlog" class="headerlink" title="清理Zabbix数据库binlog"></a>清理Zabbix数据库binlog</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入数据库的容器</span></span><br><span class="line">docker exec -it zabbix-docker-mysql-server-1 bash</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用root用户连接数据库（默认密码root_pwd）</span></span><br><span class="line">mysql -u root -proot_pwd</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show master logs;</span></span><br><span class="line">+---------------+------------+-----------+</span><br><span class="line">| Log_name      | File_size  | Encrypted |</span><br><span class="line">+---------------+------------+-----------+</span><br><span class="line">| binlog.000026 | 1073742102 | No        |</span><br><span class="line">| binlog.000027 | 1045670649 | No        |</span><br><span class="line">| binlog.000028 | 1073768512 | No        |</span><br><span class="line">| binlog.000029 | 1073743221 | No        |</span><br><span class="line">| binlog.000030 | 1073751804 | No        |</span><br><span class="line">| binlog.000031 | 1073741989 | No        |</span><br><span class="line">| binlog.000032 | 1073748145 | No        |</span><br><span class="line">| binlog.000033 | 1073742181 | No        |</span><br><span class="line">| binlog.000034 | 1073742584 | No        |</span><br><span class="line">| binlog.000035 | 1073743761 | No        |</span><br><span class="line">| binlog.000036 | 1073743431 | No        |</span><br><span class="line">| binlog.000037 | 1073742185 | No        |</span><br><span class="line">| binlog.000038 |  266208273 | No        |</span><br><span class="line">| binlog.000039 |   12134083 | No        |</span><br><span class="line">| binlog.000040 |     378418 | No        |</span><br><span class="line">| binlog.000041 | 1073756828 | No        |</span><br><span class="line">| binlog.000042 | 1073744872 | No        |</span><br><span class="line">| binlog.000043 |  664549489 | No        |</span><br><span class="line">+---------------+------------+-----------+</span><br><span class="line">18 rows in set (0.02 sec)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> binlog过期时间（数值为0则不会自动清理）</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show variables like <span class="string">&#x27;expire_logs_days&#x27;</span>;</span></span><br><span class="line">+------------------+-------+</span><br><span class="line">| Variable_name    | Value |</span><br><span class="line">+------------------+-------+</span><br><span class="line">| expire_logs_days | 0     |</span><br><span class="line">+------------------+-------+</span><br><span class="line">1 row in set (0.01 sec)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 手动删除binlog.000040以前的日志文件</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> purge binary logs to <span class="string">&#x27;binlog.000037&#x27;</span>;</span></span><br><span class="line">Query OK, 0 rows affected (0.07 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决报错"><a href="#解决报错" class="headerlink" title="解决报错"></a>解决报错</h2><h3 id="Zabbix-agent-is-not-available-for-3m"><a href="#Zabbix-agent-is-not-available-for-3m" class="headerlink" title="Zabbix agent is not available (for 3m)"></a>Zabbix agent is not available (for 3m)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看zabbix-agent容器的IP地址</span></span><br><span class="line">docker inspect zabbix-docker-zabbix-agent-1 | grep IPAddress </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">固定zabbix-agent容器的IP地址</span></span><br><span class="line">vim docker-compose_v3_alpine_mysql_latest.yaml</span><br><span class="line"> zabbix-agent:</span><br><span class="line">  image: zabbix/zabbix-agent:alpine-6.0-latest</span><br><span class="line">  profiles:</span><br><span class="line">   - full</span><br><span class="line">   - all</span><br><span class="line">  ports:</span><br><span class="line">   - &quot;10050:10050&quot;</span><br><span class="line">  volumes:</span><br><span class="line">   - /etc/localtime:/etc/localtime:ro</span><br><span class="line">   - /etc/timezone:/etc/timezone:ro</span><br><span class="line">   - ./zbx_env/etc/zabbix/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro</span><br><span class="line">  deploy:</span><br><span class="line">   resources:</span><br><span class="line">    limits:</span><br><span class="line">      cpus: &#x27;0.2&#x27;</span><br><span class="line">      memory: 128M</span><br><span class="line">    reservations:</span><br><span class="line">      cpus: &#x27;0.1&#x27;</span><br><span class="line">      memory: 64M</span><br><span class="line">   mode: global</span><br><span class="line">  env_file:</span><br><span class="line">   - ./env_vars/.env_agent</span><br><span class="line">  privileged: true</span><br><span class="line">  pid: &quot;host&quot;</span><br><span class="line">  networks:</span><br><span class="line">   zbx_net_backend:</span><br><span class="line">    ipv4_address: 172.16.239.5  #新增这行参数</span><br><span class="line">    aliases:</span><br><span class="line">     - zabbix-agent</span><br><span class="line">     - zabbix-agent-passive</span><br><span class="line">     - zabbix-agent-alpine</span><br></pre></td></tr></table></figure>
+
+<h3 id="Zabbix-Server无法启动"><a href="#Zabbix-Server无法启动" class="headerlink" title="Zabbix Server无法启动"></a>Zabbix Server无法启动</h3><p><code>Docker Compose</code>部署后，无法打开zabbix。查看Log有提示<code>zabbix server is not running: the information displayed may not be current</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看日志</span></span><br><span class="line">docker logs -f zabbix-docker-zabbix-server-1</span><br><span class="line"></span><br><span class="line">Starting Zabbix Server. Zabbix 6.0.1 (revision a80cb13).</span><br><span class="line">Press Ctrl+C to exit.</span><br><span class="line">     8:20220313:155643.869 Starting Zabbix Server. Zabbix 6.0.1 (revision a80cb13).</span><br><span class="line">     8:20220313:155643.869 ****** Enabled features ******</span><br><span class="line">     8:20220313:155643.869 SNMP monitoring:           YES</span><br><span class="line">     8:20220313:155643.869 IPMI monitoring:           YES</span><br><span class="line">     8:20220313:155643.869 Web monitoring:            YES</span><br><span class="line">     8:20220313:155643.869 VMware monitoring:         YES</span><br><span class="line">     8:20220313:155643.869 SMTP authentication:       YES</span><br><span class="line">     8:20220313:155643.869 ODBC:                      YES</span><br><span class="line">     8:20220313:155643.869 SSH support:               YES</span><br><span class="line">     8:20220313:155643.869 IPv6 support:              YES</span><br><span class="line">     8:20220313:155643.869 TLS support:               YES</span><br><span class="line">     8:20220313:155643.869 ******************************</span><br><span class="line">     8:20220313:155643.869 using configuration file: /etc/zabbix/zabbix_server.conf</span><br><span class="line">     8:20220313:155643.884 current database version (mandatory/optional): 06000000/06000000</span><br><span class="line">     8:20220313:155643.884 required mandatory version: 06000000</span><br><span class="line">   208:20220313:155643.896 starting HA manager</span><br><span class="line">   208:20220313:155643.912 HA manager started in active mode</span><br><span class="line">     8:20220313:155643.913 server #0 started [main process]</span><br><span class="line">   209:20220313:155643.913 server #1 started [service manager #1]</span><br><span class="line">   210:20220313:155643.913 server #2 started [configuration syncer #1]</span><br><span class="line">   210:20220313:155644.911 __mem_malloc: skipped 0 asked 48 skip_min 18446744073709551615 skip_max 0</span><br><span class="line">   210:20220313:155644.911 [file:dbconfig.c,line:89] __zbx_mem_malloc(): out of memory (requested 48 bytes)   #报错内存不足</span><br><span class="line">   210:20220313:155644.911 [file:dbconfig.c,line:89] __zbx_mem_malloc(): please increase CacheSize configuration parameter</span><br><span class="line">   210:20220313:155644.911 === memory statistics for configuration cache ===</span><br><span class="line">   210:20220313:155644.912 free chunks of size     24 bytes:      121</span><br><span class="line">   210:20220313:155644.912 free chunks of size     32 bytes:        6</span><br><span class="line">   210:20220313:155644.912 min chunk size:         24 bytes</span><br><span class="line">   210:20220313:155644.912 max chunk size:         32 bytes</span><br><span class="line">   210:20220313:155644.912 memory of total size 29247184 bytes fragmented into 269180 chunks</span><br><span class="line">   210:20220313:155644.912 of those,       3096 bytes are in      127 free chunks</span><br><span class="line">   210:20220313:155644.912 of those,   29244088 bytes are in   269053 used chunks</span><br><span class="line">   210:20220313:155644.912 of those,    4306864 bytes are used by allocation overhead</span><br><span class="line">   210:20220313:155644.912 ================================</span><br><span class="line">   210:20220313:155644.912 backtrace is not available for this platform</span><br><span class="line">     8:20220313:155644.915 One child process died (PID:210,exitcode/signal:1). Exiting ...</span><br><span class="line">   208:20220313:155644.915 HA manager has been paused</span><br><span class="line">   208:20220313:155644.937 HA manager has been stopped</span><br><span class="line">     8:20220313:155644.938 Zabbix Server stopped. Zabbix 6.0.1 (revision a80cb13).</span><br></pre></td></tr></table></figure>
+
+<p>出现<code>zabbix server is not running</code>的两种原因：</p>
 <ul>
-<li>开通权限：将“拨入”属性值改为“允许”。</li>
-<li>取消权限：将“拨入”属性值改为默认值【通过NPS网络策略控制访问】。</li>
+<li>mysql连接数量受限制</li>
+<li>zabbix server的缓存大小受限制</li>
 </ul>
-<h2 id="批量开通权限"><a href="#批量开通权限" class="headerlink" title="批量开通权限"></a>批量开通权限</h2><p>提前将需要开通权限的账号，写入到文本文件中。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Import-Csv &quot;D:\all_vpn_user.csv&quot; | </span><br><span class="line">ForEach-Object &#123;Set-ADUser $_.SamAccountName -Replace @&#123;msNPAllowDialin=$true&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="批量取消权限"><a href="#批量取消权限" class="headerlink" title="批量取消权限"></a>批量取消权限</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$USER = Get-ADUser -SearchBase &quot;DC=im30,DC=com&quot; -Filter &#x27;msNPAllowDialin -eq $True -and Enabled -eq $True&#x27; -Properties msNPAllowDialin</span><br><span class="line"></span><br><span class="line"># 将msNPAllowDialin设置为【通过NPS网络策略控制访问】</span><br><span class="line">$USER | ForEach-Object &#123;Set-ADUser $_.SamAccountName -Clear msNPAllowDialin&#125;</span><br><span class="line"></span><br><span class="line"># 将msNPAllowDialin设置为【允许访问】</span><br><span class="line"># Set-ADUser $USER.Trim() -Replace @&#123;msNPAllowDialin=$true&#125;</span><br></pre></td></tr></table></figure>
-
-<p>说明：</p>
-<ul>
-<li><code>msNPAllowDialin</code>的默认值是【通过NPS网络策略控制访问】；<ul>
-<li>还可以将其设置为允许访问（$true）、拒绝访问（$false）</li>
-</ul>
-</li>
-<li>若<code>msNPAllowDialin</code>的值不是True或False，在查看属性时，则不显示msNPAllowDialin字段；</li>
-<li>因此，若要将<code>msNPAllowDialin</code>恢复默认值，需直接删除该属性字段，而非设置为$null（会报错）<ul>
-<li><code>Set-ADUser $_.SamAccountName -Clear msNPAllowDialin</code></li>
-</ul>
-</li>
-</ul>
-
+<h4 id="解决zabbix-server-is-not-running"><a href="#解决zabbix-server-is-not-running" class="headerlink" title="解决zabbix server is not running"></a>解决zabbix server is not running</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">vim docker-compose_v3_alpine_mysql_latest.yaml</span><br><span class="line">services:</span><br><span class="line"> zabbix-server:</span><br><span class="line">  image: zabbix/zabbix-server-mysql:alpine-6.0-latest</span><br><span class="line">  ports:</span><br><span class="line">   - &quot;10051:10051&quot;</span><br><span class="line">  volumes:</span><br><span class="line">   - /etc/localtime:/etc/localtime:ro</span><br><span class="line">   - /etc/timezone:/etc/timezone:ro</span><br><span class="line">   - ./zbx_env/usr/lib/zabbix/alertscripts:/usr/lib/zabbix/alertscripts:ro</span><br><span class="line">   - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/export:/var/lib/zabbix/export:rw</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro</span><br><span class="line">   - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro</span><br><span class="line">   - snmptraps:/var/lib/zabbix/snmptraps:rw</span><br><span class="line">  environment:</span><br><span class="line">   - ZBX_CACHESIZE=2048M    #修改zabbix server的缓存大小</span><br><span class="line"></span><br><span class="line"> mysql-server:</span><br><span class="line">  image: mysql:8.0</span><br><span class="line">  command:</span><br><span class="line">   - mysqld</span><br><span class="line">   - --character-set-server=utf8mb4</span><br><span class="line">   - --collation-server=utf8mb4_bin</span><br><span class="line">   - --skip-character-set-client-handshake</span><br><span class="line">   - --default-authentication-plugin=mysql_native_password</span><br><span class="line">   - --max_connections=2000        #修改mysql连接数量</span><br><span class="line">   - --mysqlx_max_connections=2000 #修改mysql连接数量</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新启动服务</span></span><br><span class="line">docker-compose --profile=all -f docker-compose_v3_alpine_mysql_latest.yaml restart</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
@@ -524,7 +530,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gcc-coder.github.io/2022/06/08/pi-liang-cao-zuo-vpn-quan-xian-md/">https://gcc-coder.github.io/2022/06/08/pi-liang-cao-zuo-vpn-quan-xian-md/</a>
+                    <a href="https://gcc-coder.github.io/2022/06/15/tong-guo-docker-bu-shu-zabbix/">https://gcc-coder.github.io/2022/06/15/tong-guo-docker-bu-shu-zabbix/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -562,12 +568,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/VPN/">
-                                    <span class="chip bg-color">VPN</span>
+                                <a href="/tags/Zabbix/">
+                                    <span class="chip bg-color">Zabbix</span>
                                 </a>
                             
-                                <a href="/tags/%E8%B7%AF%E7%94%B1%E5%92%8C%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/">
-                                    <span class="chip bg-color">路由和远程访问</span>
+                                <a href="/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
                                 </a>
                             
                         </div>
@@ -739,9 +745,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/06/15/tong-guo-docker-bu-shu-zabbix/">
                     <div class="card-image">
@@ -759,9 +766,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -774,6 +781,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -796,13 +804,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/18/my-site-demo/">
+                <a href="/2022/06/08/pi-liang-cao-zuo-vpn-quan-xian-md/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="My_Site_Demo">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="批量操作VPN权限.md">
                         
-                        <span class="card-title">My_Site_Demo</span>
+                        <span class="card-title">批量操作VPN权限.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -813,7 +821,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-08
                             </span>
                         <span class="publish-author">
                             
@@ -822,6 +830,18 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/VPN/">
+                        <span class="chip bg-color">VPN</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%B7%AF%E7%94%B1%E5%92%8C%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/">
+                        <span class="chip bg-color">路由和远程访问</span>
+                    </a>
+                    
                 </div>
                 
             </div>
