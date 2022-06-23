@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, Rick&#39;s Blog">
+    <meta name="keywords" content="分类: macOS, Rick&#39;s Blog">
     <meta name="description" content="Rick&#39;s Blog">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签 | Rick&#39;s Blog</title>
+    <title>分类: macOS | Rick&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -357,109 +357,105 @@
 
     
 
-<div id="tags" class="container chip-container">
+<div id="category-cloud" class="container chip-container">
     <div class="card">
         <div class="card-content">
             <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
+                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
             </div>
             <div class="tag-chips">
                 
                 
-                <a href="/tags/curl/" title="curl: 1">
+                
+                <a href="/categories/macOS/" title="macOS: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="curl" style="background-color: #F9EBEA;">curl
+                             chip-active "
+                            style="background-color: #F9EBEA;">macOS
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/brew/" title="brew: 1">
+                <a href="/categories/Linux/" title="Linux: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="brew" style="background-color: #F5EEF8;">brew
+                            style="background-color: #F5EEF8;">Linux
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
-                
-                <a href="/tags/ssl/" title="ssl: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="ssl" style="background-color: #D5F5E3;">ssl
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/VPN/" title="VPN: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="VPN" style="background-color: #E8F8F5;">VPN
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%B7%AF%E7%94%B1%E5%92%8C%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/" title="路由和远程访问: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="路由和远程访问" style="background-color: #FEF9E7;">路由和远程访问
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Zabbix/" title="Zabbix: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Zabbix" style="background-color: #F8F9F9;">Zabbix
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Docker/" title="Docker: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Docker" style="background-color: #82E0AA;">Docker
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
                 
             </div>
         </div>
     </div>
 </div>
 
-    
-    <link rel="stylesheet" type="text/css" href="/libs/jqcloud/jqcloud.css">
-<style type="text/css">
-    #tag-wordcloud {
-        width: 100%;
-        height: 300px;
-    }
-</style>
-
-<div class="container" data-aos="fade-up">
-    <div class="card">
-        <div id="tag-wordcloud" class="card-content"></div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/libs/jqcloud/jqcloud-1.0.4.min.js"></script>
-<script type="text/javascript">
-    
-
-    $('#tag-wordcloud').jQCloud([{"text":"curl","weight":1,"link":"/tags/curl/"},{"text":"brew","weight":1,"link":"/tags/brew/"},{"text":"ssl","weight":1,"link":"/tags/ssl/"},{"text":"VPN","weight":1,"link":"/tags/VPN/"},{"text":"路由和远程访问","weight":1,"link":"/tags/路由和远程访问/"},{"text":"Zabbix","weight":1,"link":"/tags/Zabbix/"},{"text":"Docker","weight":1,"link":"/tags/Docker/"}], {
-        autoResize: true
-    });
-</script>
 
     
 
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2022/06/23/an-zhuang-brew-shi-curl-bao-cuo-unable-to-get-local-issuer-certificate/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="安装brew时curl报错unable to get local issuer certificate">
+                            
+                            <span class="card-title">安装brew时curl报错unable to get local issuer certificate</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                报错在macOS上通过curl执行在线脚本安装brew时，报错：curl: (60) SSL certificate problem: unable to get local issuer certificate
+1234567a1@1de
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-23
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/macOS/" class="post-category">
+                                    macOS
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/curl/">
+                            <span class="chip bg-color">curl</span>
+                        </a>
+                        
+                        <a href="/tags/brew/">
+                            <span class="chip bg-color">brew</span>
+                        </a>
+                        
+                        <a href="/tags/ssl/">
+                            <span class="chip bg-color">ssl</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
 </main>
+
+
 
 
     <footer class="page-footer bg-color">
