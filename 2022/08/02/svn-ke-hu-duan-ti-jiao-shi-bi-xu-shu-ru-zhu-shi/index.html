@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="安装brew时curl报错unable to get local issuer certificate, Rick&#39;s Blog">
-    <meta name="description" content="报错在macOS上通过curl执行在线脚本安装brew时，报错：curl: (60) SSL certificate problem: unable to get local issuer certificate
-1234567a1@1de">
+    <meta name="keywords" content="SVN客户端提交时必须输入注释, Rick&#39;s Blog">
+    <meta name="description" content="背景在客户端进行提交更新时，若不注明提交信息，不便于后续的信息维护等操作。因此，我们可以通过脚本的方式，强制用户在提交时，输入注释信息，否则无法进行提交。
+实现脚本路径：需存放在服务端某项目的hooks目录下，如：/data/csvn/da">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>安装brew时curl报错unable to get local issuer certificate | Rick&#39;s Blog</title>
+    <title>SVN客户端提交时必须输入注释 | Rick&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">安装brew时curl报错unable to get local issuer certificate</h1>
+                    <h1 class="description center-align post-title">SVN客户端提交时必须输入注释</h1>
                 </div>
             </div>
         </div>
@@ -431,16 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/curl/">
-                                <span class="chip bg-color">curl</span>
-                            </a>
-                        
-                            <a href="/tags/brew/">
-                                <span class="chip bg-color">brew</span>
-                            </a>
-                        
-                            <a href="/tags/ssl/">
-                                <span class="chip bg-color">ssl</span>
+                            <a href="/tags/svn/">
+                                <span class="chip bg-color">svn</span>
                             </a>
                         
                     </div>
@@ -451,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/macOS/" class="post-category">
-                                macOS
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -464,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-23
+                    2022-08-02
                 </div>
                 
 
@@ -485,27 +477,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><p>在macOS上通过curl执行在线脚本安装brew时，报错：<code>curl: (60) SSL certificate problem: unable to get local issuer certificate</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a1@1deiMac-Pro ~ % /bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</span><br><span class="line">curl: (60) SSL certificate problem: unable to get local issuer certificate</span><br><span class="line">More details here: https://curl.haxx.se/docs/sslcerts.html</span><br><span class="line"></span><br><span class="line">curl failed to verify the legitimacy of the server and therefore could not</span><br><span class="line">establish a secure connection to it. To learn more about this situation and</span><br><span class="line">how to fix it, please visit the web page mentioned above.</span><br></pre></td></tr></table></figure>
+                <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在客户端进行提交更新时，若不注明提交信息，不便于后续的信息维护等操作。因此，我们可以通过脚本的方式，强制用户在提交时，输入注释信息，否则无法进行提交。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><strong>脚本路径</strong>：需存放在服务端某项目的hooks目录下，如：<code>/data/csvn/data/repositories/demo/hooks/</code></p>
+<p><strong>脚本名称：</strong><code>pre-commit</code>（需新建）</p>
+<p><strong>脚本内容：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">REPOS=&quot;$1&quot;</span><br><span class="line">TXN=&quot;$2&quot;</span><br><span class="line">SVNLOOK=/data/csvn/bin/svnlook  #这里填写当前系统svnlook命令路径</span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$SVNLOOK</span> <span class="built_in">log</span> -t <span class="string">&quot;<span class="variable">$TXN</span>&quot;</span> <span class="string">&quot;<span class="variable">$REPOS</span>&quot;</span>：获取svn提交的日志记录</span></span><br><span class="line">LOGMSG=$($SVNLOOK log -t &quot;$TXN&quot; &quot;$REPOS&quot; | grep &quot;[a-zA-Z0-9]&quot; | wc -c)</span><br><span class="line"></span><br><span class="line">if [ &quot;$LOGMSG&quot; -lt 5 ]; then </span><br><span class="line">    echo -e &quot;\n提交的注释内容不能为空！请输入至少5个字符后再次提交！\nCommit message can&#x27;t be empty! you must input more than 5 chars as comment!.\n&quot; 1&gt;&amp;2</span><br><span class="line">    exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
 
-<p>附大佬发布的brew安装说明： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/111014448">https://zhuanlan.zhihu.com/p/111014448</a></p>
-<h2 id="排错与剖析"><a href="#排错与剖析" class="headerlink" title="排错与剖析"></a>排错与剖析</h2><p>1）验证访问其他https站点是否正常；</p>
-<p>2）查看更详细信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">a1@1deiMac-Pro ~ % curl -v https://www.baidu.com</span><br><span class="line">*   Trying 110.242.68.4...</span><br><span class="line">* TCP_NODELAY <span class="built_in">set</span></span><br><span class="line">* Connected to www.baidu.com (110.242.68.4) port 443 (<span class="comment">#0)</span></span><br><span class="line">* ALPN, offering h2</span><br><span class="line">* ALPN, offering http/1.1</span><br><span class="line">* successfully <span class="built_in">set</span> certificate verify locations:</span><br><span class="line">*   CAfile: /etc/ssl/cert.pem</span><br><span class="line">  CApath: none</span><br><span class="line">* TLSv1.2 (OUT), TLS handshake, Client hello (1):</span><br><span class="line">* TLSv1.2 (IN), TLS handshake, Server hello (2):</span><br><span class="line">* TLSv1.2 (IN), TLS handshake, Certificate (11):</span><br><span class="line">* TLSv1.2 (OUT), TLS alert, unknown CA (560):</span><br><span class="line">* SSL certificate problem: unable to get <span class="built_in">local</span> issuer certificate</span><br><span class="line">* Closing connection 0</span><br><span class="line">curl: (60) SSL certificate problem: unable to get <span class="built_in">local</span> issuer certificate</span><br><span class="line">More details here: https://curl.haxx.se/docs/sslcerts.html</span><br><span class="line"></span><br><span class="line">curl failed to verify the legitimacy of the server and therefore could not</span><br><span class="line">establish a secure connection to it. To learn more about this situation and</span><br><span class="line">how to fix it, please visit the web page mentioned above.</span><br></pre></td></tr></table></figure>
+<p>脚本文件创建完毕后，需要赋予执行权限：<code>chmod +x pre-commit</code></p>
+<p><img src="/.io//1.jpg"></p>
+<p><strong>测试效果：</strong></p>
+<p><img src="/.io//2.jpg"></p>
+<h3 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h3><p>上面的提示信息可能由于UTF-8编码问题，不能正确显示，可以按如下设置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@bj-svn-project ~]# cat /data/csvn/data/conf/httpd.conf</span><br><span class="line">ServerRoot &quot;/data/csvn&quot;</span><br><span class="line">Include &quot;data/conf/csvn_modules_httpd.conf&quot;</span><br><span class="line">Include &quot;data/conf/csvn_main_httpd.conf&quot;</span><br><span class="line">Include &quot;data/conf/csvn_logging.conf&quot;</span><br><span class="line">Include &quot;data/conf/csvn_default_dirs_httpd.conf&quot;</span><br><span class="line">Include &quot;data/conf/svn_viewvc_httpd.conf&quot;</span><br><span class="line">Include &quot;data/conf/csvn_misc_httpd.conf&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加如下内容：</span></span><br><span class="line">&lt;IfModule mod_dav_fs.c&gt;</span><br><span class="line"><span class="meta">#</span><span class="bash"> Location of the WebDAV lock database.</span></span><br><span class="line">DAVLockDB /var/lib/dav/lockdb</span><br><span class="line">SVNUseUTF8 On</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
 
-<p>从报错信息可以看出，是由于本地证书认证异常所致。</p>
-<p>解决思路：尝试更新本地证书文件，<a target="_blank" rel="noopener" href="https://curl.se/docs/caextract.html">点此获取新的CA证书</a>。</p>
-<p>关于SSL验证的说明：<a target="_blank" rel="noopener" href="https://curl.se/docs/sslcerts.html">curl - SSL CA Certificates</a></p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>1）指定下载的证书文件，再次进行访问：<code>curl -v --cacert cacert.pem https://www.baidu.com</code></p>
-<p>2）也可以忽略掉SSL的验证：<code>curl -k https://www.baidu.com</code></p>
-<ul>
-<li>Curl 的<code>-k</code>参数可以忽略SLL证书的验证</li>
-</ul>
-<p>通过以上两种方法，一般就可以访问https的站点了。但是对于我要使用脚本安装brew的需求还未完成，因为脚本中还需要通过git克隆国内的下载源，而项目地址也是https，所以还需要解决git运行https报错的问题。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git/&#x27;: SSL certificate problem: unable to get local issuer certificate</span><br><span class="line">此步骤失败 &#x27;尝试再次运行自动脚本选择其他下载源或者切换网络&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>此时，如果和我有类似的报错，可以尝试停用git的ssl验证：<code>git config --global http.sslVerify false</code></p>
-<p>执行完上述命令，再次运行安装brew脚本，可以正常运行。</p>
+<p>最后，需要重启下httpd服务，使其生效：<code>csvn-httpd restart</code></p>
 
                 
             </div>
@@ -532,7 +517,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gcc-coder.github.io/2022/06/23/an-zhuang-brew-shi-curl-bao-cuo-unable-to-get-local-issuer-certificate/">https://gcc-coder.github.io/2022/06/23/an-zhuang-brew-shi-curl-bao-cuo-unable-to-get-local-issuer-certificate/</a>
+                    <a href="https://gcc-coder.github.io/2022/08/02/svn-ke-hu-duan-ti-jiao-shi-bi-xu-shu-ru-zhu-shi/">https://gcc-coder.github.io/2022/08/02/svn-ke-hu-duan-ti-jiao-shi-bi-xu-shu-ru-zhu-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,16 +555,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/curl/">
-                                    <span class="chip bg-color">curl</span>
-                                </a>
-                            
-                                <a href="/tags/brew/">
-                                    <span class="chip bg-color">brew</span>
-                                </a>
-                            
-                                <a href="/tags/ssl/">
-                                    <span class="chip bg-color">ssl</span>
+                                <a href="/tags/svn/">
+                                    <span class="chip bg-color">svn</span>
                                 </a>
                             
                         </div>
@@ -751,9 +728,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/08/02/svn-ke-hu-duan-ti-jiao-shi-bi-xu-shu-ru-zhu-shi/">
                     <div class="card-image">
@@ -771,9 +749,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -786,6 +764,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -804,13 +783,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/15/tong-guo-docker-bu-shu-zabbix/">
+                <a href="/2022/06/23/an-zhuang-brew-shi-curl-bao-cuo-unable-to-get-local-issuer-certificate/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="通过Docker部署Zabbix">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="安装brew时curl报错unable to get local issuer certificate">
                         
-                        <span class="card-title">通过Docker部署Zabbix</span>
+                        <span class="card-title">安装brew时curl报错unable to get local issuer certificate</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -821,14 +800,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/macOS/" class="post-category">
+                                    macOS
                                 </a>
                             
                             
@@ -838,12 +817,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Zabbix/">
-                        <span class="chip bg-color">Zabbix</span>
+                    <a href="/tags/curl/">
+                        <span class="chip bg-color">curl</span>
                     </a>
                     
-                    <a href="/tags/Docker/">
-                        <span class="chip bg-color">Docker</span>
+                    <a href="/tags/brew/">
+                        <span class="chip bg-color">brew</span>
+                    </a>
+                    
+                    <a href="/tags/ssl/">
+                        <span class="chip bg-color">ssl</span>
                     </a>
                     
                 </div>
